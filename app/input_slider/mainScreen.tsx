@@ -23,6 +23,7 @@ export default function MainScreen() {
   const steps = 500; // incremental steps to be used by InputSlider component
   const amountInUse = 8453.79; // current amount in use of the credit limit
   const currentLimitSelection = updatedValue ?? 10500; // the choice of user for limit value
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>

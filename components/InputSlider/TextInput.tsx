@@ -17,6 +17,7 @@ type TextInputComponent = {
   amountInUse: number;
   steps: number;
   animatedValueOffset: SharedValue<number>;
+  toRound: SharedValue<boolean>;
 };
 
 export default function TextInputForSlider({
@@ -25,6 +26,7 @@ export default function TextInputForSlider({
   amountInUse,
   animatedValueOffset,
   steps,
+  toRound,
 }: TextInputComponent) {
   const router = useRouter();
 
@@ -32,8 +34,18 @@ export default function TextInputForSlider({
     const formatedValue = Math.abs(animatedValueOffset.value);
     return formatedValue;
   });
+  const isToRound = useDerivedValue(() => {
+    const formatedValue = toRound.value;
+    return formatedValue;
+  });
+
   const animatedtxtProps = useAnimatedProps(() => {
-    let val = Math.round((max * offset.value) / MAX_WIDTH / steps) * steps;
+    let val;
+    if (isToRound.value) {
+      val = Math.round((max * offset.value) / MAX_WIDTH / steps) * steps;
+    } else {
+      val = (max * offset.value) / MAX_WIDTH;
+    }
     let ret;
     let a = parseFloat(val.toString())
       .toFixed(2)
@@ -51,7 +63,13 @@ export default function TextInputForSlider({
   });
 
   function goToManualScreen() {
-    let val = Math.round((max * offset.value) / MAX_WIDTH / steps) * steps;
+    let val;
+    if (isToRound.value) {
+      val = Math.round((max * offset.value) / MAX_WIDTH / steps) * steps;
+    } else {
+      val = (max * offset.value) / MAX_WIDTH;
+    }
+
     router.push({
       pathname: "/input_slider/manualInput",
       params: { currentLimitSelection: val, max, amountInUse },

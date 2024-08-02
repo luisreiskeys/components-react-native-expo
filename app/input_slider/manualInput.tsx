@@ -65,6 +65,7 @@ export default function ManualLimitInput() {
 
   function updateUserLimit() {
     const updatedValue = Number(val.replace(/\D/g, "")) / 100;
+
     router.back();
     router.setParams({
       updatedValue,

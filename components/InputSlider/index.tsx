@@ -36,24 +36,34 @@ export default function InputSlider({
 }: InputSliderProps) {
   const maxAvailable = max - amountInUse; // available with the max limit
   const pressed = useSharedValue<boolean>(false);
+  const toRound = useSharedValue<boolean>(currentLimitSelection % steps === 0);
 
   const offset = useSharedValue<number>(
     (currentLimitSelection * MAX_WIDTH) / max
   );
+  const semlimite = useSharedValue<boolean>(
+    Math.round((max * offset.value) / MAX_WIDTH) - amountInUse <= 0
+  );
   useEffect(() => {
+    toRound.value = currentLimitSelection % steps === 0;
     offset.value = (currentLimitSelection * MAX_WIDTH) / max;
+    semlimite.value =
+      Math.round(
+        (max * ((currentLimitSelection * MAX_WIDTH) / max)) / MAX_WIDTH
+      ) -
+        amountInUse <=
+      0;
   }, [currentLimitSelection]);
 
   const current = (currentLimitSelection * MAX_WIDTH) / max;
   const railAvailableWidth = (maxAvailable * MAX_WIDTH) / max;
   const railInUseWidth = (amountInUse * MAX_WIDTH) / max;
-  const semlimite = useSharedValue<boolean>(
-    Math.round((max * offset.value) / MAX_WIDTH) - amountInUse <= 0
-  );
+
   //
   const pan = Gesture.Pan()
     .onBegin(() => {
       pressed.value = true;
+      toRound.value = true;
     })
     .onChange((event) => {
       offset.value =
@@ -116,9 +126,14 @@ export default function InputSlider({
   }));
 
   const animatedtxtProps = useAnimatedProps(() => {
-    let val =
-      Math.round((max * offset.value) / MAX_WIDTH / steps) * steps -
-      amountInUse;
+    let val;
+    if (toRound.value) {
+      val =
+        Math.round((max * offset.value) / MAX_WIDTH / steps) * steps -
+        amountInUse;
+    } else {
+      val = (max * offset.value) / MAX_WIDTH - amountInUse;
+    }
 
     let ret;
     let a = parseFloat(val.toString())
@@ -149,6 +164,7 @@ export default function InputSlider({
         amountInUse={amountInUse}
         animatedValueOffset={offset}
         steps={steps}
+        toRound={toRound}
       />
       <AnimatedTxtInput
         editable={false}
