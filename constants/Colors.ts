@@ -15,6 +15,8 @@ export const Colors = {
     card: "#f2f2f7",
     tabIconDefault: "#687076",
     tabIconSelected: tintColorLight,
+    border: "#d1d1d6",
+    primary: "#007aff", // Azul estilo iOS
   },
   dark: {
     text: "#ECEDEE",
@@ -24,5 +26,7 @@ export const Colors = {
     icon: "#9BA1A6",
     tabIconDefault: "#9BA1A6",
     tabIconSelected: tintColorDark,
+    border: "#3a3a3c",
+    primary: "#0a84ff", // Azul mais vívido para dark
   },
 };

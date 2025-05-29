@@ -64,6 +64,26 @@ export default function TabTwoScreen() {
           <ThemedText type="link">View component</ThemedText>
         </Link>
       </Collapsible>
+      <Collapsible title="Skeleton">
+        <ThemedText>This is a Skeleton component.</ThemedText>
+        <Link
+          href={{
+            pathname: "/skeleton_demo",
+          }}
+        >
+          <ThemedText type="link">View component</ThemedText>
+        </Link>
+      </Collapsible>
+      <Collapsible title="CheckBox">
+        <ThemedText>This is a CheckBox component.</ThemedText>
+        <Link
+          href={{
+            pathname: "/checkbox_demo",
+          }}
+        >
+          <ThemedText type="link">View component</ThemedText>
+        </Link>
+      </Collapsible>
     </ParallaxScrollView>
   );
 }
