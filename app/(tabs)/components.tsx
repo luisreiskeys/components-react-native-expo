@@ -54,6 +54,16 @@ export default function TabTwoScreen() {
           <ThemedText type="link">View component</ThemedText>
         </Link>
       </Collapsible>
+      <Collapsible title="Stepper">
+        <ThemedText>This is a Stepper component.</ThemedText>
+        <Link
+          href={{
+            pathname: "/stepper_demo",
+          }}
+        >
+          <ThemedText type="link">View component</ThemedText>
+        </Link>
+      </Collapsible>
     </ParallaxScrollView>
   );
 }
