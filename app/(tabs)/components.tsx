@@ -29,7 +29,6 @@ export default function TabTwoScreen() {
         <Link
           href={{
             pathname: "/input_slider/mainScreen",
-            params: { name: "Bacon" },
           }}
         >
           <ThemedText type="link">View component</ThemedText>
@@ -40,7 +39,16 @@ export default function TabTwoScreen() {
         <Link
           href={{
             pathname: "/star_rating_demo",
-            params: { name: "Bacon" },
+          }}
+        >
+          <ThemedText type="link">View component</ThemedText>
+        </Link>
+      </Collapsible>
+      <Collapsible title="BottomSheet">
+        <ThemedText>This is a Bottom Sheet component.</ThemedText>
+        <Link
+          href={{
+            pathname: "/bottom_sheet_demo",
           }}
         >
           <ThemedText type="link">View component</ThemedText>
