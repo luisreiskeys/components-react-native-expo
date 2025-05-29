@@ -35,6 +35,17 @@ export default function TabTwoScreen() {
           <ThemedText type="link">View component</ThemedText>
         </Link>
       </Collapsible>
+      <Collapsible title="StartRating">
+        <ThemedText>This is a Start Rating component.</ThemedText>
+        <Link
+          href={{
+            pathname: "/star_rating_demo",
+            params: { name: "Bacon" },
+          }}
+        >
+          <ThemedText type="link">View component</ThemedText>
+        </Link>
+      </Collapsible>
     </ParallaxScrollView>
   );
 }

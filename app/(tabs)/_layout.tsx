@@ -39,6 +39,18 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="pool"
+        options={{
+          title: "Pool",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "bowling-ball" : "bowling-ball-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
