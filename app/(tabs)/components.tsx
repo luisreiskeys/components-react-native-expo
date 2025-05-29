@@ -16,10 +16,11 @@ export default function TabTwoScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Components</ThemedText>
+        <ThemedText type="title">Components </ThemedText>
       </ThemedView>
       <ThemedText>
-        I'll try to upload a least one new component per week. Stay tuned.
+        I'll try to upload a least one new component per week. Stay tuned. By
+        Luís Reis Dev.
       </ThemedText>
       <Collapsible title="Input Slider (Nubank App)">
         <ThemedText>
@@ -79,6 +80,26 @@ export default function TabTwoScreen() {
         <Link
           href={{
             pathname: "/checkbox_demo",
+          }}
+        >
+          <ThemedText type="link">View component</ThemedText>
+        </Link>
+      </Collapsible>
+      <Collapsible title="MultiSwitch">
+        <ThemedText>This is a MultiSwitch component.</ThemedText>
+        <Link
+          href={{
+            pathname: "/multiswitch_demo",
+          }}
+        >
+          <ThemedText type="link">View component</ThemedText>
+        </Link>
+      </Collapsible>
+      <Collapsible title="Progress Steper">
+        <ThemedText>This is a Progress Steper component.</ThemedText>
+        <Link
+          href={{
+            pathname: "/progress_stepper_demo",
           }}
         >
           <ThemedText type="link">View component</ThemedText>
