@@ -1,29 +1,39 @@
 import { useState } from "react";
-import { View, Button, Text } from "react-native";
+import { Text } from "react-native";
 import BottomSheet from "../../components/BottomSheet";
+import { ThemedView } from "../../components/ThemedView";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function BottomSheetDemo() {
   const [visible, setVisible] = useState(false);
+  const textColor = useThemeColor({}, "text");
 
   return (
-    <View
+    <ThemedView
       style={{
         flex: 1,
-        backgroundColor: "#000",
         justifyContent: "center",
         alignItems: "center",
+        padding: 20,
       }}
     >
-      <Button title="Abrir Bottom Sheet" onPress={() => setVisible(true)} />
+      <Text
+        onPress={() => setVisible(true)}
+        style={{ fontSize: 18, color: textColor, marginBottom: 20 }}
+      >
+        Abrir Bottom Sheet
+      </Text>
 
       <BottomSheet visible={visible} onClose={() => setVisible(false)}>
-        <Text style={{ color: "#fff", fontSize: 18, marginBottom: 10 }}>
+        <Text style={{ color: textColor, fontSize: 18, marginBottom: 10 }}>
           Ações rápidas:
         </Text>
-        <Text style={{ color: "#fff", marginBottom: 8 }}>📤 Compartilhar</Text>
-        <Text style={{ color: "#fff", marginBottom: 8 }}>✏️ Editar</Text>
-        <Text style={{ color: "#fff" }}>🗑️ Excluir</Text>
+        <Text style={{ color: textColor, marginBottom: 8 }}>
+          📤 Compartilhar
+        </Text>
+        <Text style={{ color: textColor, marginBottom: 8 }}>✏️ Editar</Text>
+        <Text style={{ color: textColor }}>🗑️ Excluir</Text>
       </BottomSheet>
-    </View>
+    </ThemedView>
   );
 }

@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
-import {
-  Dimensions,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  useColorScheme,
-} from "react-native";
+import { Dimensions, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
   runOnJS,
 } from "react-native-reanimated";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 
@@ -28,8 +24,8 @@ export default function BottomSheet({
   children,
 }: Props) {
   const translateY = useSharedValue(SCREEN_HEIGHT);
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === "dark";
+  const bg = useThemeColor({}, "card"); // fundo do sheet
+  const backdropColor = useThemeColor({}, "background"); // opcional
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
@@ -40,7 +36,7 @@ export default function BottomSheet({
   }));
 
   const open = () => {
-    translateY.value = withTiming(height, { duration: 300 });
+    translateY.value = withTiming(0, { duration: 300 });
   };
 
   const close = () => {
@@ -63,16 +59,19 @@ export default function BottomSheet({
       {visible && (
         <>
           <TouchableWithoutFeedback onPress={close}>
-            <Animated.View style={[styles.backdrop, backdropStyle]} />
+            <Animated.View
+              style={[
+                styles.backdrop,
+                { backgroundColor: backdropColor },
+                backdropStyle,
+              ]}
+            />
           </TouchableWithoutFeedback>
 
           <Animated.View
             style={[
               styles.sheet,
-              {
-                height: 400,
-                backgroundColor: isDark ? "#1c1c1e" : "#f2f2f2",
-              },
+              { height, backgroundColor: bg },
               animatedStyle,
             ]}
           >
@@ -87,11 +86,11 @@ export default function BottomSheet({
 const styles = StyleSheet.create({
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "#000",
     zIndex: 9,
   },
   sheet: {
     position: "absolute",
+    bottom: 0,
     width: "100%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
