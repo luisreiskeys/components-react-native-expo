@@ -105,6 +105,16 @@ export default function TabTwoScreen() {
           <ThemedText type="link">View component</ThemedText>
         </Link>
       </Collapsible>
+      <Collapsible title="Infinite Carousel">
+        <ThemedText>This is a Infinite Carousel component.</ThemedText>
+        <Link
+          href={{
+            pathname: "/infinite_carousel_demo",
+          }}
+        >
+          <ThemedText type="link">View component</ThemedText>
+        </Link>
+      </Collapsible>
     </ParallaxScrollView>
   );
 }
