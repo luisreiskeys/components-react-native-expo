@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform } from "react-native";
+import { Image, StyleSheet, Platform, Button } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView, {
@@ -7,8 +7,13 @@ import ParallaxScrollView, {
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { ExternalLink } from "@/components/ExternalLink";
+import { useEffect, useRef } from "react";
+import { useDynamicNotification } from "@/libs/dynamic-notification/useDynamicNotification";
 
 export default function HomeScreen() {
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const { checkNotification } = useDynamicNotification();
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}

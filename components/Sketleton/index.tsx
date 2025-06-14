@@ -13,7 +13,6 @@ interface Props {
   width?: number | DimensionValue;
   height?: number;
   borderRadius?: number;
-  variant?: "rect" | "circle" | "line";
   style?: ViewStyle;
 }
 
@@ -21,7 +20,6 @@ export default function Skeleton({
   width = "100%",
   height = 20,
   borderRadius = 8,
-  variant = "line",
   style,
 }: Props) {
   const baseColor = useThemeColor({}, "card");
@@ -38,10 +36,6 @@ export default function Skeleton({
       opacity,
     };
   });
-
-  const borderRadiusStyle =
-    variant === "circle" ? { borderRadius: 9999 } : { borderRadius };
-
   return (
     <Animated.View
       style={[
@@ -49,7 +43,7 @@ export default function Skeleton({
           backgroundColor: baseColor,
           width,
           height,
-          ...borderRadiusStyle,
+          borderRadius,
         },
         animatedStyle,
         style,

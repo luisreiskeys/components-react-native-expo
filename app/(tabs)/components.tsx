@@ -115,6 +115,16 @@ export default function TabTwoScreen() {
           <ThemedText type="link">View component</ThemedText>
         </Link>
       </Collapsible>
+      <Collapsible title="Toast">
+        <ThemedText>This is a Toast component.</ThemedText>
+        <Link
+          href={{
+            pathname: "/toast_demo",
+          }}
+        >
+          <ThemedText type="link">View component</ThemedText>
+        </Link>
+      </Collapsible>
     </ParallaxScrollView>
   );
 }
